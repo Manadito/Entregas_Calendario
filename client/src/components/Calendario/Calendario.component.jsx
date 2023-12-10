@@ -10,24 +10,30 @@ const Calendario = () => {
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
   const [selectDate, setSelectDate] = useState(currentDate);
-
+  console.log(generateDate());
   return (
-    <div className=" m-10 rounded-xl  bg-zinc-600">
-      <div className="grid h-full grid-cols-3">
-        <div className=" grid content-start justify-center gap-3 rounded-l-xl border-b-4 border-l-4 border-r-2 border-t-4 border-indigo-500 pt-10">
+    <div className=" bg-zinc-600 lg:m-10  lg:rounded-xl">
+      <div className="sm:grid sm:h-full sm:grid-cols-none md:grid md:h-full md:grid-cols-none md:max-lg:grid-rows-6 lg:grid lg:h-full lg:grid-cols-3 lg:grid-rows-1">
+        <div className="grid justify-items-center sm:row-span-1 sm:grid sm:content-start sm:justify-items-center sm:pb-0 sm:pt-0 md:row-span-1 md:grid md:w-full md:content-center md:justify-center md:pb-0 md:pt-0 lg:grid lg:h-full lg:content-start lg:justify-center lg:gap-3 lg:rounded-l-xl lg:border-b-4 lg:border-l-4 lg:border-r-2 lg:border-t-4 lg:border-indigo-500 lg:pt-10">
           <img
-            className="w-[300px] "
+            className="w-[200px] pb-2 pl-0 pr-0 pt-10 sm:w-[200px] sm:pb-2 sm:pl-0 sm:pr-0 sm:pt-10 md:w-full md:pb-2 md:pt-10 lg:w-[200px] lg:pl-0 lg:pr-0 xl:w-[200px] "
             src="/img/Grupo_Entregas_Logo.svg"
             alt="Logo"
           />
-          <h1 className="text-xl font-semibold">Bienvenido</h1>
-          <p>Elije la fecha de entrega</p>
+          <div className="flex justify-center">
+            <h1 className="xs:pb-2 xs:pt-2 xs:text-xl xs:font-semibold sm:pb-2 sm:pt-2 sm:text-xl sm:font-semibold md:pb-2 md:pt-2 md:text-xl md:font-semibold">
+              Bienvenido
+            </h1>
+          </div>
+          <div className="flex items-center justify-center">
+            <p className="pb-4">Elija la fecha de retiro de su documento</p>
+          </div>
         </div>
-        <div className="col-span-2 rounded-r-xl border-b-4 border-l-2 border-r-4 border-t-4 border-indigo-500 bg-slate-300">
-          <div className="grid h-full grid-cols-3">
-            <div className="col-span-2 bg-slate-500">
-              <div className="grid h-full content-start pl-10 pr-10 pt-10">
-                <div className="mx-auto">
+        <div className="grid sm:row-span-5 md:row-span-5 lg:col-span-2 lg:h-full lg:rounded-r-xl lg:border-b-4 lg:border-l-2 lg:border-r-4 lg:border-t-4 lg:border-indigo-500 lg:bg-slate-300">
+          <div className="grid h-full w-full justify-items-center sm:grid sm:grid-rows-3 md:grid md:grid-rows-3 lg:grid lg:h-full lg:grid-cols-3 lg:grid-rows-1 lg:justify-items-center">
+            <div className="grid w-full justify-items-center bg-slate-500 sm:row-span-1 sm:pl-28 sm:pr-28 md:row-span-1 md:pl-36 md:pr-36 lg:col-span-2 lg:pl-10 lg:pr-10">
+              <div className="grid h-full content-center sm:w-[500px] sm:pb-5 sm:pl-10 sm:pr-10 sm:pt-5 md:max-lg:w-[500px] lg:h-full lg:w-full lg:content-start">
+                <div className="mx-auto pb-5">
                   Por favor seleccione una fecha y hora
                 </div>
                 <div className="flex justify-between">
@@ -67,13 +73,13 @@ const Calendario = () => {
                     );
                   })}
                 </div>
-                <div className="grid w-full grid-cols-7">
+                <div className="grid grid-cols-7">
                   {generateDate(today.month(), today.year()).map(
                     ({ date, currentMonth, today }, index) => {
                       return (
                         <div
                           key={index}
-                          className="grid h-14 place-content-center border-t"
+                          className="grid h-14 place-content-center"
                         >
                           {/*     
               The cn util allows us to check conditions. For example, if current
@@ -84,7 +90,9 @@ const Calendario = () => {
                */}
                           <h1
                             className={cn(
-                              currentMonth ? "" : "text-gray-400",
+                              currentMonth
+                                ? ""
+                                : " pointer-events-none text-white",
                               today ? "bg-red-600 text-white" : "",
                               selectDate.toDate().toDateString() ===
                                 date.toDate().toDateString()
@@ -105,7 +113,7 @@ const Calendario = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full pb-10 pt-10">
+            <div className="w-full pb-10 pt-10 sm:row-span-2 md:row-span-2">
               <div className="flex justify-center">
                 <h1>Horario para {selectDate.toDate().toDateString()} </h1>
               </div>
