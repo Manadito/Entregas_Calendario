@@ -29,6 +29,8 @@ export const generateDate = (
       today:
         firstDateOfMonth.date(i).toDate().toDateString() ===
         dayjs().toDate().toDateString(),
+      saturday: firstDateOfMonth.date(i).day() === 6,
+      sunday: firstDateOfMonth.date(i).day() === 0,
     });
   }
 
